@@ -1,8 +1,63 @@
-let fitxers = [];
-let dropArea, dragDropText, button, input, preview;
+const dropArea = document.querySelector(".drop-area");
+const dragText = dropArea.querySelector("h2");
+const button = dropArea.querySelector("button");
+const input = dropArea.querySelector("#input-file");
+let files;
 
-dropArea.addEventListener(evt, prevDefault);
+button.addEventListener("click", (e) => {
+    input.click();
+});
 
-function prevDefault(e) {
+
+input.addEventListener("change", e => {
+    files = this.files;
+    dropArea.classList.add("active");
+    showFiles(files);
+    dropArea.classList.remove("active")
+});
+
+
+dropArea.addEventListener("dragover", e => {
     e.preventDefault();
+    dropArea.classList.add("active");
+    dragText.textContent = "Drop to upload";
+});
+dropArea.addEventListener("dragleave", e => {
+    e.preventDefault();
+    dropArea.classList.remove("active");
+    dragText.textContent = "Drag & Drop files";
+});
+
+dropArea.addEventListener("drop", e => {
+    e.preventDefault();
+    files = e.dataTransfer.files;
+    showFiles(files)
+    dropArea.classList.remove("active");
+    dragText.textContent = "Drop & Drop files";
+});
+
+
+
+
+function showFiles(files){
+
+    if(files.length === undefined){
+        processFile(files);
+    }else{
+        for (const file of files){
+            processFile(file)
+        }
+    }
 }
+
+function processFile (file){
+    const docType = file.type;
+    const validExtensions = ['image/jpeg' , 'image/jpg', 'image/png', 'image/gif'];
+
+
+    if(validExtensions.includes(docType)){
+
+    }else{
+        alert("No es archivo valido")
+    }
+};
