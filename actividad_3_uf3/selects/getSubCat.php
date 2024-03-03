@@ -1,10 +1,13 @@
 <?php
+//No me deja hacer una consulta de un js por eso esta este comando
+header("Access-Control-Allow-Origin: *");
 
 //conexión a la base de datos
-$con = mysqli_connect("localhost","root","","ejemplo");
+//NOTA PARA HERSON DEL FUTURO: ACORDATE DE CAMBIAR EL EJEMPLO A ACTIVIDAD_JS Y CREAR LA BASE DE DATOS
+$con = mysqli_connect("localhost","root","","actividad_js");
 
 //variable estatica para las pruebas
-$cat = 1;
+$cat = $_POST['cat1'];
 if($con){
 
     //query a la base de datos
@@ -13,10 +16,10 @@ if($con){
 
 
     //consulta a la base de datos
-    $consulta = mysqli_query($con, $query_2);
+    $consulta = mysqli_query($con, $query);
 
 
-    //guarda un arreglo 
+    //guarda un arreglo
     $return = array();
 
     $object = new stdClass();
@@ -24,7 +27,7 @@ if($con){
     while ($row = mysqli_fetch_assoc($consulta)) {
         $object = new stdClass();
         $object->id = $row["id_subcat"];
-        $object->id_cate = $row["id_categoria"];
+        $object->id_cat = $row["id_categoria"];
         $object->nom = $row["nom_subcat"];
         $return[] = $object;
        

@@ -1,19 +1,23 @@
 <?php
 
-//conexión a la base de datos
-$con = mysqli_connect("localhost","root","","ejemplo");
+//No me deja hacer una consulta de un js por eso esta este comando
+header("Access-Control-Allow-Origin: *");
 
-//variable estatica para las pruebas
-$cat = 1;
+//conexión a la base de datos
+
+//NOTA PARA HERSON DEL FUTURO: ACORDATE DE CAMBIAR EL EJEMPLO A ACTIVIDAD_JS Y CREAR LA BASE DE DATOS
+$con = mysqli_connect("localhost","root","","actividad_js");
+
+
 if($con){
 
     //query a la base de datos
-    $query = "SELECT * FROM subcategoria WHERE id_categoria = $cat";
-    $query_1 = "SELECT * FROM subcategoria";
+    $query = "SELECT * FROM categoria";
+
 
 
     //consulta a la base de datos
-    $consulta = mysqli_query($con, $query_2);
+    $consulta = mysqli_query($con, $query);
 
 
     //guarda un arreglo 
