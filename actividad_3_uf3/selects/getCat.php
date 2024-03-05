@@ -6,7 +6,8 @@ header("Access-Control-Allow-Origin: *");
 //conexión a la base de datos
 
 //NOTA PARA HERSON DEL FUTURO: ACORDATE DE CAMBIAR EL EJEMPLO A ACTIVIDAD_JS Y CREAR LA BASE DE DATOS
-$con = mysqli_connect("localhost","root","","actividad_js");
+//$con = mysqli_connect("localhost","root","","actividad_js");
+$con = mysqli_connect("localhost","root","","ejemplo");
 
 
 if($con){
@@ -20,7 +21,7 @@ if($con){
     $consulta = mysqli_query($con, $query);
 
 
-    //guarda un arreglo 
+    //guarda un arreglo
     $return = array();
 
     $object = new stdClass();
@@ -29,7 +30,7 @@ if($con){
 //ciclo para retorno de categorias
     while ($row = mysqli_fetch_assoc($consulta)) {
         $object = new stdClass();
-        $object->id = $row["id_cat"];
+        $object->id = $row["id_categoria"];
         $object->nom = $row["nombre"];
         $return[] = $object;
        

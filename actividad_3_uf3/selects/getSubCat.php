@@ -4,10 +4,13 @@ header("Access-Control-Allow-Origin: *");
 
 //conexión a la base de datos
 //NOTA PARA HERSON DEL FUTURO: ACORDATE DE CAMBIAR EL EJEMPLO A ACTIVIDAD_JS Y CREAR LA BASE DE DATOS
-$con = mysqli_connect("localhost","root","","actividad_js");
+//$con = mysqli_connect("localhost","root","","actividad_js");
+$con = mysqli_connect("localhost","root","","ejemplo");
 
 //variable estatica para las pruebas
 $cat = $_POST['cat1'];
+//$cat = 1;
+
 if($con){
 
     //query a la base de datos
