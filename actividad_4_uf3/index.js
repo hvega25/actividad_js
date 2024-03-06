@@ -16,17 +16,47 @@ function initMap() {
 
 
     let geocoder = new google.maps.Geocoder();
-    let address = "R. Santa Eulália, 86 - Santana, São Paulo - SP, 02031-020, Brasil";
+    //let address = "R. Santa Eulália, 86 - Santana, São Paulo - SP, 02031-020, Brasil";
+
+    let address = document.getElementById("adreca");
+    let lat = document.getElementById("latitude");
+    let long = document.getElementById("longitude");
     geocoder.geocode({'address': address}, function (results, status) {
 
         if (status == google.maps.GeocoderStatus.OK) {
             latitude = results[0].geometry.location.lat();
             longitude = results[0].geometry.location.lng();
+            lat.value = latitude;
+            long.value = longitude;
+            console.log(`Prueba del geocoder Latitude : ${latitude}, Longitude : ${longitude}  `);
 
-            console.log(`Latitude : ${latitude}, Longitude : ${longitude}  `);
+
         }
     });
 
 }
+
+document.getElementById('findLoc').addEventListener('click', function () {
+    console.log('funciona');
+
+    let geocoder = new google.maps.Geocoder();
+    let address = document.getElementById("adreca");
+    console.log(address.value)
+
+    let lat = document.getElementById("latitude");
+    let long = document.getElementById("longitude");
+    geocoder.geocode({'address': address.value.toString()}, function (results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+            latitude = results[0].geometry.location.lat();
+            longitude = results[0].geometry.location.lng();
+            lat.value = latitude;
+            long.value = longitude;
+            console.log(`Prueba del geocoder Latitude : ${latitude}, Longitude : ${longitude}  `);
+
+
+        }
+    });
+})
 
 window.initMap = initMap;
